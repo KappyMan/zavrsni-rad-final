@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pixel_village_houses.png-352407f5069a7afb68eff6da27d75021.stex"
+path="res://.import/pixel_village_islanders.png-3359967c44bb9e4cdf47531d00f989c2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://World/WorldTextures/pixel_village_houses.png"
-dest_files=[ "res://.import/pixel_village_houses.png-352407f5069a7afb68eff6da27d75021.stex" ]
+source_file="res://World/WorldTextures/HousesTexture/pixel_village_islanders.png"
+dest_files=[ "res://.import/pixel_village_islanders.png-3359967c44bb9e4cdf47531d00f989c2.stex" ]
 
 [params]
 

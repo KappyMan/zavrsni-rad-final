@@ -13,6 +13,7 @@ onready var tween: Tween = $Tween
 
 func _set_zoom_level(value: float) -> void:
 	_zoom_level = clamp(value, min_zoom, max_zoom)
+# warning-ignore:return_value_discarded
 	tween.interpolate_property(
 		self,
 		"zoom",
@@ -22,6 +23,7 @@ func _set_zoom_level(value: float) -> void:
 		tween.TRANS_LINEAR,
 		tween.EASE_OUT
 	)
+# warning-ignore:return_value_discarded
 	tween.start()
 
 func _unhandled_input(event):
