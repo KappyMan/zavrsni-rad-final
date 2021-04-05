@@ -10,11 +10,11 @@ onready var select_tile = $SelectTile
 func _ready():
 	select_tile.visible = true
 
-func _process(delta):
+func _process(_delta):
 	selectTileControl(select_tile, state)
 
-func selectTileControl(tile_select, state:bool = false):
-	if state:
+func selectTileControl(tile_select, select_state:bool = false):
+	if select_state:
 		var pos = getCellGlobalPosition(get_global_mouse_position(), floor_tile)
 		tile_select.global_position = pos
 		if Input.is_action_just_pressed("ui_accept"):
