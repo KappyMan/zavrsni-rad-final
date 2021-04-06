@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/cloth-inventory.wav-eebf6358bb7c27f593f843c0e2396195.sample"
+
+[deps]
+
+source_file="res://Music&Sounds/SoundEffects/inventory_sound_effects/cloth-inventory.wav"
+dest_files=[ "res://.import/cloth-inventory.wav-eebf6358bb7c27f593f843c0e2396195.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/sell_buy_item.wav-0ec38117c8968753ae7357657c6ddf08.sample"
+
+[deps]
+
+source_file="res://Music&Sounds/SoundEffects/inventory_sound_effects/sell_buy_item.wav"
+dest_files=[ "res://.import/sell_buy_item.wav-0ec38117c8968753ae7357657c6ddf08.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

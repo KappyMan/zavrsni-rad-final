@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/turn_page.wav-6273d6c584425b714940539fe64cee72.sample"
+
+[deps]
+
+source_file="res://Music&Sounds/SoundEffects/inventory_sound_effects/turn_page.wav"
+dest_files=[ "res://.import/turn_page.wav-6273d6c584425b714940539fe64cee72.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

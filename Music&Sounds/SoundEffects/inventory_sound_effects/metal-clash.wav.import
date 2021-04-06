@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/metal-clash.wav-282551e7c12d36c00c53b8126f1c1556.sample"
+
+[deps]
+
+source_file="res://Music&Sounds/SoundEffects/inventory_sound_effects/metal-clash.wav"
+dest_files=[ "res://.import/metal-clash.wav-282551e7c12d36c00c53b8126f1c1556.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

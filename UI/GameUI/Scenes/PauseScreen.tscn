@@ -1,0 +1,99 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://UI/GameUI/Graphics/menu_background_0.png" type="Texture" id=1]
+[ext_resource path="res://UI/Menu/Scenes/MenuButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://UI/Fonts/ThirteenPixel/ThirteenPixel.tres" type="DynamicFont" id=3]
+[ext_resource path="res://UI/GameUI/Graphics/icon_13.png" type="Texture" id=4]
+[ext_resource path="res://UI/GameUI/Graphics/icon_12.png" type="Texture" id=5]
+[ext_resource path="res://UI/GameUI/Scenes/PauseScreen.gd" type="Script" id=6]
+
+[node name="PauseScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -256.0
+margin_right = 256.0
+margin_bottom = 512.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
+margin_right = 512.0
+margin_bottom = 512.0
+rect_min_size = Vector2( 512, 512 )
+texture = ExtResource( 1 )
+expand = true
+
+[node name="TextureButton" type="TextureButton" parent="CenterContainer/TextureRect"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -128.0
+margin_bottom = 128.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 113.0
+margin_top = 64.0
+margin_right = 399.0
+margin_bottom = 448.0
+
+[node name="GamePaused" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_right = 286.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 3 )
+text = "Game Paused"
+align = 1
+valign = 1
+
+[node name="VSplitContainer" type="VSplitContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 46.0
+margin_right = 286.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 0, 50 )
+
+[node name="ResumeButton" parent="CenterContainer/VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 100.0
+margin_bottom = 164.0
+
+[node name="Label" parent="CenterContainer/VBoxContainer/ResumeButton" index="0"]
+text = "Resume"
+
+[node name="SettingsButton" parent="CenterContainer/VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 168.0
+margin_bottom = 232.0
+
+[node name="Label" parent="CenterContainer/VBoxContainer/SettingsButton" index="0"]
+text = "Settings"
+
+[node name="ExitButton" parent="CenterContainer/VBoxContainer" instance=ExtResource( 2 )]
+margin_top = 236.0
+margin_bottom = 300.0
+
+[node name="Label" parent="CenterContainer/VBoxContainer/ExitButton" index="0"]
+text = "Exit"
+
+[node name="VSplitContainer2" type="VSplitContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 304.0
+margin_right = 286.0
+margin_bottom = 384.0
+rect_min_size = Vector2( 0, 80 )
+[connection signal="pressed" from="CenterContainer/TextureRect/TextureButton" to="." method="_on_TextureButton_pressed"]
+
+[editable path="CenterContainer/VBoxContainer/ResumeButton"]
+
+[editable path="CenterContainer/VBoxContainer/SettingsButton"]
+
+[editable path="CenterContainer/VBoxContainer/ExitButton"]
