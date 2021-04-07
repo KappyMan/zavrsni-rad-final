@@ -2,7 +2,8 @@
 
 [ext_resource path="res://World/NPC/NPCs/PassiveCreature.gd" type="Script" id=1]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=1]
+radius = 4.0
 
 [node name="PassiveCreature" type="KinematicBody2D"]
 collision_layer = 2

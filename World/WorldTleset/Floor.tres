@@ -227,10 +227,10 @@ vertices = PoolVector2Array( 16, 16, 32, 24, 16, 32, 0, 24 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
 [sub_resource type="ConvexPolygonShape2D" id=56]
-points = PoolVector2Array( 16, 16, 32, 24, 16, 32, 0, 24 )
+points = PoolVector2Array( 16, 0, 32, 8, 16, 16, 0, 8 )
 
 [sub_resource type="ConvexPolygonShape2D" id=57]
-points = PoolVector2Array( 0, 24, 16, 16, 32, 24, 16, 32 )
+points = PoolVector2Array( 16, 16, 16, 16, 32, 8, 16, 0, 0, 8 )
 
 [resource]
 0/name = "GrassMess"

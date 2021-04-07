@@ -12,25 +12,20 @@ func createCharacter():
 	if $Texture.texture != null:
 		creator.queue_free()
 
-var speed : = 400
+var speed : = 1.5
 var path : = PoolVector2Array() setget set_path
 
 func _process(delta):
-	var move_distance = speed*delta
-	move_along_path(move_distance)
+	move_along_path()
 
-func move_along_path(distance):
+func move_along_path():
 	var start_point := position
 	for _i in range(path.size()):
 		var distance_to_next : = start_point.distance_to(path[0])
-		if distance <= distance_to_next and distance >= 0.0:
-			move_and_collide(start_point.linear_interpolate(path[0], distance/distance_to_next))
+		if not distance_to_next < 1.0:
+			var normal_dir = (path[0] - start_point)
+			move_and_collide(normal_dir.normalized()*speed)
 			break
-		elif distance < 0.0:
-			position = path[0]
-			set_process(false)
-			break
-		distance-=distance_to_next
 		start_point = path[0]
 		path.remove(0)
 
