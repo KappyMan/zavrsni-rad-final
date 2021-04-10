@@ -3,8 +3,12 @@ extends Control
 onready var cell_grid = $CellGrid
 onready var action_grid = $ActionGrid
 
+signal update_control_state(new_state)
+
 var action_array = []
 var cell_array = []
+
+var current_button = null setget set_current_button
 
 func _ready():
 	getAllCells(cell_grid,cell_array)
@@ -32,5 +36,15 @@ func addShortcutToCell(index:int = 0):
 
 func toggleOneCell(returner, desired_array):
 	for cell in desired_array:
-		if cell != returner:
-			cell.pressed = false
+		if cell == returner:
+			set_current_button(returner.texture_normal.get_path())
+		cell.pressed = false
+
+func set_current_button(value):
+	determineMode(value)
+	current_button = value
+
+func determineMode(texture:String):
+	texture = texture.trim_prefix("res://UI/GameUI/Graphics/CellIcons/tile_")
+	texture =texture.trim_suffix(".png")
+	emit_signal("update_control_state", texture)

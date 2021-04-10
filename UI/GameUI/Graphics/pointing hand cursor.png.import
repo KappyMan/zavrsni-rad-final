@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon_select.png-7bcf31058d9fe9f418402fdf95b4ed09.stex"
+path="res://.import/pointing hand cursor.png-db4987fd4de067aa3706d555de0386d1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/GameUI/Graphics/CellIcons/icon_select.png"
-dest_files=[ "res://.import/icon_select.png-7bcf31058d9fe9f418402fdf95b4ed09.stex" ]
+source_file="res://UI/GameUI/Graphics/pointing hand cursor.png"
+dest_files=[ "res://.import/pointing hand cursor.png-db4987fd4de067aa3706d555de0386d1.stex" ]
 
 [params]
 

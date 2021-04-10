@@ -8,6 +8,7 @@ export var zoom_duration := 0.1
 var _previousPosition: Vector2 = Vector2(0, 0);
 var _moveCamera: bool = false;
 var _zoom_level := 1.0 setget _set_zoom_level
+var _drag_mode = true setget set_drag_mode
 
 onready var tween: Tween = $Tween
 
@@ -26,6 +27,9 @@ func _set_zoom_level(value: float) -> void:
 # warning-ignore:return_value_discarded
 	tween.start()
 
+func set_drag_mode(value):
+	_drag_mode = value
+
 func _unhandled_input(event):
 	#Zooming in and out
 	if event.is_action_pressed("zoom_in"):
@@ -33,7 +37,7 @@ func _unhandled_input(event):
 	if event.is_action_pressed("zoom_out"):
 		_set_zoom_level(_zoom_level + zoom_factor)
 	#Click and drag on screen
-	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT:
+	if event is InputEventMouseButton && event.button_index == BUTTON_LEFT && _drag_mode:
 		get_tree().set_input_as_handled();
 		if event.is_pressed():
 			_previousPosition = event.position;

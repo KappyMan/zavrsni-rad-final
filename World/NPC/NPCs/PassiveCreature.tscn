@@ -1,9 +1,44 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://World/NPC/NPCs/PassiveCreature.gd" type="Script" id=1]
+[ext_resource path="res://World/NPC/NPCTextures/SmallCreatures/Passive/Alive/boy.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 4.0
+
+[sub_resource type="Animation" id=3]
+resource_name = "idle"
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.8, 1.2 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "walk"
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 20.0, -20.0 ]
+}
 
 [node name="PassiveCreature" type="KinematicBody2D"]
 collision_layer = 2
@@ -13,3 +48,10 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Texture" type="Sprite" parent="."]
+scale = Vector2( 0.994848, 1.00515 )
+texture = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Texture")
+anims/idle = SubResource( 3 )
+anims/walk = SubResource( 2 )

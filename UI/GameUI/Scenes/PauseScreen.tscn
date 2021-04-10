@@ -32,7 +32,7 @@ rect_min_size = Vector2( 512, 512 )
 texture = ExtResource( 1 )
 expand = true
 
-[node name="TextureButton" type="TextureButton" parent="CenterContainer/TextureRect"]
+[node name="CloseButton" type="TextureButton" parent="CenterContainer/TextureRect"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -128.0
@@ -90,7 +90,8 @@ margin_top = 304.0
 margin_right = 286.0
 margin_bottom = 384.0
 rect_min_size = Vector2( 0, 80 )
-[connection signal="pressed" from="CenterContainer/TextureRect/TextureButton" to="." method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="CenterContainer/TextureRect/CloseButton" to="." method="_on_CloseButton_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ResumeButton" to="." method="_on_ResumeButton_pressed"]
 
 [editable path="CenterContainer/VBoxContainer/ResumeButton"]
 

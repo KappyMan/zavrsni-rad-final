@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon_walk.png-a9438eeecea12786aa159e32f8ff09dc.stex"
+path="res://.import/tile_farm_selected.png-59cccd929a4fd2b216210e2d49e5d15b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/GameUI/Graphics/CellIcons/icon_walk.png"
-dest_files=[ "res://.import/icon_walk.png-a9438eeecea12786aa159e32f8ff09dc.stex" ]
+source_file="res://UI/GameUI/Graphics/CellIcons/tile_farm_selected.png"
+dest_files=[ "res://.import/tile_farm_selected.png-59cccd929a4fd2b216210e2d49e5d15b.stex" ]
 
 [params]
 
