@@ -43,12 +43,8 @@ func controlStateMachine(state):
 			setupForState(state)
 		ControlState.walk:
 			setupForState(state)
-			if Input.is_action_just_pressed("ui_down"):
-				small_creature = PassiveCreature.instance()
-				small_creature.global_position = getCellfromGlobalPosition(get_global_mouse_position(), floor_tile)
-				add_child(small_creature)
-			if Input.is_action_pressed("right_click") and small_creature != null:
-				createPathPolygon(small_creature.global_position,get_global_mouse_position())
+			walkController()
+			spawnFriendly()
 		ControlState.farm:
 			setupForState(state)
 		ControlState.click:
@@ -56,6 +52,16 @@ func controlStateMachine(state):
 
 func getCellfromGlobalPosition(globalPosition: Vector2, tilemap) -> Vector2:
 	return tilemap.world_to_map(to_local(globalPosition))
+
+func spawnFriendly():
+	if Input.is_action_just_pressed("ui_down"):
+				small_creature = PassiveCreature.instance()
+				small_creature.global_position = getCellfromGlobalPosition(get_global_mouse_position(), floor_tile)
+				add_child(small_creature)
+
+func walkController():
+	if Input.is_action_pressed("right_click") and small_creature != null:
+		createPathPolygon(small_creature.global_position,get_global_mouse_position())
 
 func selectArea():
 	if Input.is_action_just_pressed("left_click"):
@@ -70,9 +76,7 @@ func selectArea():
 		rect.position = drag_points[0]
 		rect.end = drag_points[1]
 		rect = rect.abs()
-		print(rect)
 		createRectangle(rect)
-		rect = null
 		select_tile.update_bitmask_region()
 		drag_points.clear()
 

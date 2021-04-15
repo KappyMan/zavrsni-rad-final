@@ -5,10 +5,12 @@ const CreatureCreator = preload("res://World/NPC/NPCs/SmallCreatureCreator.tscn"
 onready var texture = $Texture
 onready var animation_player = $AnimationPlayer
 
+var selected = false
 var walk_state = false
 
 func _ready():
 	createCharacter()
+
 
 func createCharacter():
 	var creator = CreatureCreator.instance()
@@ -38,6 +40,7 @@ func move_along_path():
 
 func animation_control(state):
 	if state:
+		texture.scale = Vector2.ONE
 		animation_player.play("walk")
 		return
 	texture.rotation_degrees = 0
@@ -48,3 +51,7 @@ func set_path(value : PoolVector2Array):
 	if value.size() == 0:
 		return
 
+func _on_Area2D_input_event(viewport, event, shape_idx):
+	selected = ! selected
+	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
+		texture.get_material().set_shader_param("width",selected)

@@ -25,11 +25,13 @@ func setupCells(array):
 	for cell in len(array):
 		if array[cell].connect("button_down",self,"toggleOneCell",[array[cell],array]) == OK:
 			if array == cell_array:
-				array[cell].shortcut = addShortcutToCell(cell)
+				array[cell].shortcut = addShortcutToCell("slot_",cell)
+			if array == action_array:
+				array[cell].shortcut = addShortcutToCell("action_",cell)
 
-func addShortcutToCell(index:int = 0):
+func addShortcutToCell(sufix, index:int = 0):
 	var shortcut=ShortCut.new()
-	var action_name = "slot_"+str(index)
+	var action_name = sufix+str(index)
 	var action = InputMap.get_action_list(action_name).pop_front()
 	shortcut.set_shortcut(action)
 	return shortcut

@@ -1,46 +1,24 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://World/NPC/NPCs/PassiveCreature.gd" type="Script" id=1]
 [ext_resource path="res://World/NPC/NPCTextures/SmallCreatures/Passive/Alive/boy.png" type="Texture" id=2]
+[ext_resource path="res://World/NPC/NPCAnimations/NPCsidle.tres" type="Animation" id=3]
+[ext_resource path="res://World/NPC/NPCAnimations/NPCswalk.tres" type="Animation" id=4]
+[ext_resource path="res://UI/Shaders/SelectSprite.shader" type="Shader" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 4.0
+radius = 8.0
 
-[sub_resource type="Animation" id=3]
-resource_name = "idle"
-length = 0.5
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 0.8, 1.2 ) ]
-}
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 5 )
+shader_param/width = 0.0
+shader_param/outline_color = Color( 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "walk"
-length = 0.5
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0.1, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 20.0, -20.0 ]
-}
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 13 )
 
 [node name="PassiveCreature" type="KinematicBody2D"]
+position = Vector2( -1, 0 )
 collision_layer = 2
 script = ExtResource( 1 )
 
@@ -48,10 +26,17 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Texture" type="Sprite" parent="."]
-scale = Vector2( 0.994848, 1.00515 )
+material = SubResource( 3 )
+scale = Vector2( 0.956085, 1.04392 )
 texture = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Texture")
-anims/idle = SubResource( 3 )
-anims/walk = SubResource( 2 )
+anims/idle = ExtResource( 3 )
+anims/walk = ExtResource( 4 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 2 )
+[connection signal="input_event" from="Area2D" to="." method="_on_Area2D_input_event"]

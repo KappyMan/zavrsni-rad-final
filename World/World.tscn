@@ -1,11 +1,14 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://World/WorldTleset/Floor.tres" type="TileSet" id=1]
 [ext_resource path="res://Camera/Camera2D.tscn" type="PackedScene" id=2]
 [ext_resource path="res://UI/GameUI/Tilesets/SelectTileset.tres" type="TileSet" id=3]
 [ext_resource path="res://World/Scenes/TreePatch.tscn" type="PackedScene" id=4]
 [ext_resource path="res://World/World.gd" type="Script" id=5]
+[ext_resource path="res://World/Houses/House.tscn" type="PackedScene" id=6]
 [ext_resource path="res://UI/GameUI/Scenes/PauseScreen.tscn" type="PackedScene" id=7]
+[ext_resource path="res://World/NPC/NPCs/EnemySpawner.tscn" type="PackedScene" id=8]
+[ext_resource path="res://World/Houses/Fire.tscn" type="PackedScene" id=9]
 [ext_resource path="res://UI/GameUI/Scenes/GameUI.tscn" type="PackedScene" id=10]
 
 [node name="World" type="Node2D"]
@@ -39,13 +42,6 @@ limit_right = 2000
 limit_bottom = 1000
 limit_smoothed = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="GameUI" parent="CanvasLayer" instance=ExtResource( 10 )]
-
-[node name="PauseScreen" parent="CanvasLayer" instance=ExtResource( 7 )]
-visible = false
-
 [node name="Line2D" type="Line2D" parent="."]
 
 [node name="Greenery" type="YSort" parent="."]
@@ -70,4 +66,34 @@ mode = 1
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 32, 16 )
 format = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameUI" parent="CanvasLayer" instance=ExtResource( 10 )]
+
+[node name="PauseScreen" parent="CanvasLayer" instance=ExtResource( 7 )]
+visible = false
+
+[node name="EnemySpawner" parent="." instance=ExtResource( 8 )]
+position = Vector2( 1515.27, -734.091 )
+
+[node name="Homes" type="Node2D" parent="."]
+
+[node name="House" parent="Homes" instance=ExtResource( 6 )]
+position = Vector2( -288, -144 )
+flip_texture = true
+upgrade_stage = 1
+
+[node name="House2" parent="Homes" instance=ExtResource( 6 )]
+position = Vector2( -192, -160 )
+
+[node name="House3" parent="Homes" instance=ExtResource( 6 )]
+position = Vector2( -128, -112 )
+
+[node name="House4" parent="Homes" instance=ExtResource( 6 )]
+position = Vector2( -320, -96 )
+flip_texture = true
+
+[node name="Fire" parent="Homes" instance=ExtResource( 9 )]
+position = Vector2( -224, -96 )
 [connection signal="update_control_state" from="CanvasLayer/GameUI" to="." method="_on_GameUI_update_control_state"]
