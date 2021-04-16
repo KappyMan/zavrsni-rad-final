@@ -2,28 +2,51 @@ extends KinematicBody2D
 
 const CreatureCreator = preload("res://World/NPC/NPCs/SmallCreatureCreator.tscn")
 
+enum CurrentTask{
+	wait,
+	attack,
+	walk,
+	farm
+}
+
+signal selected_unit(emit_self)
+
+export(String, "boy", "girl", "worker") var texture_type
+
 onready var texture = $Texture
 onready var animation_player = $AnimationPlayer
-
-var selected = false
-var walk_state = false
-
-func _ready():
-	createCharacter()
-
-
-func createCharacter():
-	var creator = CreatureCreator.instance()
-	texture.texture = creator.getTextureForCreature("boy")
-	if texture.texture != null:
-		creator.queue_free()
 
 var speed : = 1.5
 var path : = PoolVector2Array() setget set_path
 
+var curr_task = CurrentTask.wait
+var selected = false
+var walk_state = false
+
+func _ready():
+	var mat = texture.get_material().duplicate(true)
+	texture.set_material(mat)
+	createCharacter()
+
 func _process(_delta):
+	taskMachine(curr_task)
 	animation_control(walk_state)
 	move_along_path()
+
+func taskMachine(task):
+	match task:
+		CurrentTask.wait:
+			#print("WAIT")
+			pass
+		CurrentTask.walk:
+			#print("WALK")
+			pass
+		CurrentTask.attack:
+			#print("ATTACK")
+			pass
+		CurrentTask.farm:
+			#print("FARM")
+			pass
 
 func move_along_path():
 	var start_point := position
@@ -51,7 +74,17 @@ func set_path(value : PoolVector2Array):
 	if value.size() == 0:
 		return
 
-func _on_Area2D_input_event(viewport, event, shape_idx):
+func createCharacter():
+	var creator = CreatureCreator.instance()
+	texture.texture = creator.getTextureForCreature(texture_type)
+	if texture.texture != null:
+		creator.queue_free()
+
+func onNewTask(value):
+	curr_task = value
+
+func _on_Area2D_input_event(_viewport, event, _shape_idx):
 	selected = ! selected
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
 		texture.get_material().set_shader_param("width",selected)
+		emit_signal("selected_unit", self)
