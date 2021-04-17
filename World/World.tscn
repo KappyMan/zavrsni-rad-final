@@ -127,3 +127,5 @@ position = Vector2( 1515.27, -734.091 )
 [node name="PauseScreen" parent="CanvasLayer" instance=ExtResource( 7 )]
 visible = false
 [connection signal="update_control_state" from="CanvasLayer/GameUI" to="." method="_on_GameUI_update_control_state"]
+
+[editable path="EnemySpawner"]

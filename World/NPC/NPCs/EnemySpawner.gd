@@ -4,7 +4,6 @@ const aggressiveCreature = preload("res://World/NPC/NPCs/AgressiveCreature.tscn"
 
 var _timer = null
 
-
 func _ready():
 	_timer = Timer.new()
 	add_child(_timer)
@@ -15,10 +14,8 @@ func _ready():
 	_timer.start()
 
 func _on_Timer_timeout():
-	spawnCreature(PoolVector2Array([get_parent().global_position,global_position]))
-
-#func _process(delta):
-#	spawnCreature(PoolVector2Array([get_parent(),global_position,global_position]))
+	var path = get_parent().get_child(0).get_simple_path(get_parent().global_position,global_position,false)
+	spawnCreature(path)
 
 func spawnCreature(new_path):
 	var aggressivecreature = aggressiveCreature.instance()
