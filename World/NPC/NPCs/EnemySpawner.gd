@@ -14,8 +14,10 @@ func _ready():
 	_timer.start()
 
 func _on_Timer_timeout():
-	var path = get_parent().get_child(0).get_simple_path(get_parent().global_position,global_position,false)
+	var path = get_parent().get_child(0).get_simple_path(get_parent().get_node("Homes").global_position,global_position)
 	spawnCreature(path)
+	randomize()
+	_timer.set_wait_time(rand_range(1,10))
 
 func spawnCreature(new_path):
 	var aggressivecreature = aggressiveCreature.instance()

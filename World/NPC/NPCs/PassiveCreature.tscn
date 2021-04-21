@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://World/NPC/NPCs/PassiveCreature.gd" type="Script" id=1]
+[ext_resource path="res://World/NPC/NPCTextures/SmallCreatures/Passive/Alive/boy.png" type="Texture" id=2]
 [ext_resource path="res://World/NPC/NPCAnimations/NPCsidle.tres" type="Animation" id=3]
 [ext_resource path="res://World/NPC/NPCAnimations/NPCswalk.tres" type="Animation" id=4]
+[ext_resource path="res://CreatureStats.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 8.0
@@ -53,7 +55,8 @@ shape = SubResource( 1 )
 
 [node name="Texture" type="Sprite" parent="."]
 material = SubResource( 3 )
-scale = Vector2( 0.956085, 1.04392 )
+scale = Vector2( 0.853442, 1.14656 )
+texture = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Texture")
@@ -64,4 +67,6 @@ anims/walk = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 4 )
+
+[node name="CreatureStats" parent="." instance=ExtResource( 5 )]
 [connection signal="input_event" from="Area2D" to="." method="_on_Area2D_input_event"]

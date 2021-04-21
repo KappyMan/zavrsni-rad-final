@@ -58,7 +58,10 @@ func _on_Timer_timeout():
 
 
 func _on_Area2D_body_entered(body):
-	attack_body = body
+	if attack_body == null:
+		attack_body = body
+		return
+	
 	attack_friendly = true
 
 

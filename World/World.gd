@@ -33,7 +33,6 @@ func _ready():
 	all_friendlies += getAllFriendlies(friendly)
 
 func _process(_delta):
-	print()
 	controlStateMachine(control_state)
 
 func _unhandled_input(event):
@@ -74,7 +73,7 @@ func selectedUnit(new_unit):
 # warning-ignore:return_value_discarded
 		connect("new_task",small_creature,"onNewTask")
 		return
-	if !is_connected("new_task",small_creature,"onNewTask"):
+	if is_connected("new_task",small_creature,"onNewTask"):
 		disconnect("new_task",small_creature,"onNewTask")
 		small_creature = new_unit
 # warning-ignore:return_value_discarded

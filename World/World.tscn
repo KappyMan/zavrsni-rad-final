@@ -90,29 +90,28 @@ position = Vector2( -1760, 896 )
 position = Vector2( 1824, -848 )
 
 [node name="Homes" type="Node2D" parent="."]
-position = Vector2( -384, -256 )
+position = Vector2( -352, 160 )
 __meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
+"_edit_group_": true
 }
 
 [node name="House" parent="Homes" instance=ExtResource( 6 )]
-position = Vector2( -64, -47.224 )
+position = Vector2( 0, -64 )
 flip_texture = true
 upgrade_stage = 1
 
 [node name="House2" parent="Homes" instance=ExtResource( 6 )]
-position = Vector2( 32, -64 )
+position = Vector2( 96, -64 )
 
 [node name="House3" parent="Homes" instance=ExtResource( 6 )]
-position = Vector2( 96, -16 )
+position = Vector2( 0, 64 )
 
 [node name="House4" parent="Homes" instance=ExtResource( 6 )]
 position = Vector2( -96, 0 )
 flip_texture = true
 
 [node name="House5" parent="Homes" instance=ExtResource( 6 )]
-position = Vector2( 128, 32 )
+position = Vector2( 128, 0 )
 upgrade_stage = 2
 
 [node name="Fire" parent="Homes" instance=ExtResource( 9 )]
