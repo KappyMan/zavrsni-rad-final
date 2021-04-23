@@ -2,11 +2,11 @@
 
 [ext_resource path="res://World/NPC/NPCs/PassiveCreature.gd" type="Script" id=1]
 [ext_resource path="res://World/NPC/NPCTextures/SmallCreatures/Passive/Alive/boy.png" type="Texture" id=2]
-[ext_resource path="res://World/NPC/NPCAnimations/NPCsidle.tres" type="Animation" id=3]
-[ext_resource path="res://World/NPC/NPCAnimations/NPCswalk.tres" type="Animation" id=4]
+[ext_resource path="res://World/NPC/NPCAnimations/human_hurt.tres" type="Animation" id=3]
+[ext_resource path="res://World/NPC/NPCAnimations/human_idle.tres" type="Animation" id=4]
 [ext_resource path="res://CreatureStats.tscn" type="PackedScene" id=5]
-[ext_resource path="res://World/NPC/NPCAnimations/NPCsattack.tres" type="Animation" id=6]
-[ext_resource path="res://World/NPC/NPCAnimations/NPCshurt.tres" type="Animation" id=7]
+[ext_resource path="res://World/NPC/NPCAnimations/human_attack.tres" type="Animation" id=6]
+[ext_resource path="res://World/NPC/NPCAnimations/human_walk.tres" type="Animation" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 8.0
@@ -61,10 +61,10 @@ texture = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Texture")
-anims/attack = ExtResource( 6 )
-anims/hurt = ExtResource( 7 )
-anims/idle = ExtResource( 3 )
-anims/walk = ExtResource( 4 )
+anims/human_attack = ExtResource( 6 )
+anims/human_hurt = ExtResource( 3 )
+anims/human_idle = ExtResource( 4 )
+anims/human_walk = ExtResource( 7 )
 
 [node name="Area2D" type="Area2D" parent="."]
 

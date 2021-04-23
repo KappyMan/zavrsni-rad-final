@@ -16,6 +16,7 @@ export(String, "boy", "girl", "worker") var texture_type
 
 onready var texture = $Texture
 onready var animation_player = $AnimationPlayer
+onready var creator = CreatureCreator.instance()
 
 var speed : = 1.5
 var path : = PoolVector2Array() setget set_path
@@ -83,10 +84,10 @@ func move_along_path():
 func animation_control(state):
 	if state:
 		texture.scale = Vector2.ONE
-		animation_player.play("walk")
+		animation_player.play("human_walk")
 		return
 	texture.rotation_degrees = 0
-	animation_player.play("idle")
+	animation_player.play("human_idle")
 
 func set_path(value : PoolVector2Array):
 	path = value
@@ -94,7 +95,6 @@ func set_path(value : PoolVector2Array):
 		return
 
 func createCharacter():
-	var creator = CreatureCreator.instance()
 	texture.texture = creator.getTextureForCreature(texture_type)
 	if texture.texture != null:
 		creator.queue_free()

@@ -1,6 +1,4 @@
-extends KinematicBody2D
-
-const smallCreatureCreator = preload("res://World/NPC/NPCs/SmallCreatureCreator.tscn")
+extends KinematicBody2D 
 
 onready var texture = $Texture
 onready var animation_player = $AnimationPlayer
@@ -12,7 +10,9 @@ var attack_friendly = false
 var attack_body = null
 
 func _ready():
-	pass
+	#$Area2D.monitorable = true
+	$Area2D.monitoring = true
+	$Area2D/CollisionShape2D2.disabled = false
 
 func _process(_delta):
 	if attack_friendly:
@@ -20,11 +20,8 @@ func _process(_delta):
 	animation_control(walk_state)
 	move_along_path()
 
-func createCharacter(type, category, state):
-	var creator = smallCreatureCreator.instance()
-	texture.texture = creator.getTextureForCreature(type,category,state)
-	if texture.texture != null:
-		creator.queue_free()
+func createCharacter(new_texture):
+	texture.texture = new_texture
 
 func move_along_path():
 	var start_point := position
@@ -43,10 +40,10 @@ func move_along_path():
 func animation_control(state):
 	if state:
 		texture.scale = Vector2.ONE
-		animation_player.play("NPCswalk")
+		animation_player.play("zombie_walk")
 		return
 	texture.rotation_degrees = 0
-	animation_player.play("NPCsidle")
+	animation_player.play("zombie_idle")
 
 func set_path(value : PoolVector2Array):
 	path = value

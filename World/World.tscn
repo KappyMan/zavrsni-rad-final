@@ -116,6 +116,8 @@ upgrade_stage = 2
 
 [node name="Fire" parent="Homes" instance=ExtResource( 9 )]
 
+[node name="Enemies" type="Node" parent="."]
+
 [node name="EnemySpawner" parent="." instance=ExtResource( 8 )]
 position = Vector2( 1515.27, -734.091 )
 
