@@ -53,12 +53,16 @@ func set_path(value : PoolVector2Array):
 func _on_Timer_timeout():
 	queue_free()
 
+func initCombat(target_body):
+	var center = global_position.distance_to(target_body.global_position)/2
+	print(center)
+
 
 func _on_Area2D_body_entered(body):
 	if attack_body == null:
 		attack_body = body
+		initCombat(body)
 		return
-	
 	attack_friendly = true
 
 

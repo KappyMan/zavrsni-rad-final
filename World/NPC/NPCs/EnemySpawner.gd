@@ -8,11 +8,13 @@ onready var creator = createCreature.instance()
 onready var holder = get_parent().get_node("Enemies")
 onready var goal = get_parent().get_node("Homes")
 
+var path = PoolVector2Array()
 var enemy_count = []
 var allow_spawn = true
 var _timer = null
 
 func _ready():
+	path = get_parent().get_child(0).get_simple_path(goal.global_position,global_position)
 	add_child(creator)
 	_timer = Timer.new()
 	add_child(_timer)
@@ -27,17 +29,15 @@ func _process(_delta):
 
 func _on_Timer_timeout():
 	if allow_spawn:
-		var path = get_parent().get_child(0).get_simple_path(goal.global_position,global_position)
 		enemy_count.append(spawnCreature(path))
-		print(enemy_count)
 		randomize()
-		_timer.set_wait_time(rand_range(1,1))
+		_timer.set_wait_time(rand_range(1,20))
 
 func spawnCreature(new_path):
 	var aggressivecreature = aggressiveCreature.instance()
+	holder.add_child(aggressivecreature)
 	aggressivecreature.global_position=global_position
 	aggressivecreature.path = new_path
-	holder.add_child(aggressivecreature)
 	aggressivecreature.createCharacter(creator.getTextureForCreature("zombie",1,1))
 	return aggressivecreature
 

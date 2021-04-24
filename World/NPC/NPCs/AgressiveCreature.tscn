@@ -15,7 +15,6 @@ radius = 8.0
 radius = 250.0
 
 [node name="AgressiveCreature" type="KinematicBody2D"]
-self_modulate = Color( 1, 0.305882, 0.305882, 1 )
 script = ExtResource( 1 )
 
 [node name="Texture" type="Sprite" parent="."]
