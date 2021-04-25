@@ -1,6 +1,9 @@
 extends Node
 
 onready var root =  get_tree().get_current_scene()
+onready var floor_tile = root.get_child(0).get_child(0)
+onready var game_ui = root.get_node("UI/GameUI")
+onready var crops = root.get_node("Crops")
 
 var screen_metrics_dict = {}
 var Global_game_state = GameState.PLAY

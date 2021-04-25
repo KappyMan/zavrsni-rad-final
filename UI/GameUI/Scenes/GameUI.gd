@@ -7,6 +7,9 @@ signal update_control_state(new_state)
 
 var action_array = []
 var cell_array = []
+var item_count = []
+var item_reference = []
+var current_inventory = []
 
 var current_button = null setget set_current_button
 
@@ -50,3 +53,32 @@ func determineMode(texture:String):
 	texture = texture.trim_prefix("res://UI/GameUI/Graphics/CellIcons/tile_")
 	texture =texture.trim_suffix(".png")
 	emit_signal("update_control_state", texture)
+
+func displayInventory(cell_slots, count_array, items):
+	if len(count_array) > 6:
+		return
+	for cell in len(count_array):
+		var cell_texture = cell_slots[cell].get_child(0)
+		if cell_texture.texture == null:
+			cell_texture.texture = createIcon(items[cell])
+			current_inventory.append(items[cell])
+		cell_slots[cell].get_child(1).text = str(count_array[cell])
+
+func createIcon(path):
+	var texture = load(path)
+	var img = Image.new()
+	img = texture.get_data()
+	img.crop(16,16)
+	var new_texture = ImageTexture.new()
+	new_texture.create_from_image(img,0)
+	return new_texture
+
+func addInventory(resource):
+	var seach_index = item_reference.find(resource)
+	if seach_index == -1:
+		item_reference.append(resource)
+		item_count.append(1)
+		displayInventory(cell_array, item_count, item_reference)
+		return
+	item_count[seach_index] += 1
+	displayInventory(cell_array, item_count, item_reference)

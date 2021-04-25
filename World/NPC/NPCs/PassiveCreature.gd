@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+const Crop = preload("res://World/Crops/CropScenes/Crop.tscn")
 const CreatureCreator = preload("res://World/NPC/NPCs/SmallCreatureCreator.tscn")
 
 enum CurrentTask{
@@ -26,6 +27,8 @@ var curr_task = CurrentTask.wait
 
 var selected = false
 var walk_state = false
+
+var can_plant = true
 
 func _ready():
 	var mat = texture.get_material().duplicate(true)
@@ -66,6 +69,23 @@ func farm_land(tilemap,select_tile,tile_id):
 	if select_tile.get_cellv(location) != TileMap.INVALID_CELL and tilemap.get_cellv(location) != tile_id:
 		tilemap.set_cellv(location,tile_id)
 		tilemap.update_bitmask_region(location-Vector2(1,1),location+Vector2(1,1))
+		return
+	if tilemap.get_cellv(location) == tile_id:
+		create_crop()
+	
+
+func create_crop():
+	if can_plant and pool_has(path, Global.floor_tile.world_to_map(global_position)):
+		var crop = Crop.instance()
+		crop._set_tile_coords(Global.floor_tile.world_to_map(global_position))
+		Global.crops.add_child(crop)
+		print(Global.floor_tile.world_to_map(global_position))
+
+func pool_has(pool, value):
+	for v in pool:
+		if v == value:
+			return true
+		return false
 
 func move_along_path():
 	var start_point := position
@@ -115,3 +135,10 @@ func _on_Area2D_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
 		texture.get_material().set_shader_param("width",selected)
 		emit_signal("selected_unit", self)
+
+
+func _on_Area2D_area_entered(_area):
+	can_plant = false
+
+func _on_Area2D_area_exited(_area):
+	can_plant = true

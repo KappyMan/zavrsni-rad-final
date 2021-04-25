@@ -42,6 +42,26 @@ tile_set = ExtResource( 3 )
 cell_size = Vector2( 32, 16 )
 format = 1
 
+[node name="Crops" type="Node2D" parent="."]
+
+[node name="Crop" parent="Crops" instance=ExtResource( 12 )]
+TILEMAP_TILE = Vector2( -24, 4 )
+
+[node name="Crop2" parent="Crops" instance=ExtResource( 12 )]
+TILEMAP_TILE = Vector2( -21, 1 )
+
+[node name="Crop3" parent="Crops" instance=ExtResource( 12 )]
+TILEMAP_TILE = Vector2( -23, -3 )
+
+[node name="Crop4" parent="Crops" instance=ExtResource( 12 )]
+TILEMAP_TILE = Vector2( -26, -5 )
+
+[node name="Crop5" parent="Crops" instance=ExtResource( 12 )]
+TILEMAP_TILE = Vector2( -15, 6 )
+
+[node name="Crop6" parent="Crops" instance=ExtResource( 12 )]
+TILEMAP_TILE = Vector2( -10, 7 )
+
 [node name="Friendly" type="Node2D" parent="."]
 __meta__ = {
 "_edit_group_": true,
@@ -122,16 +142,13 @@ upgrade_stage = 2
 [node name="EnemySpawner" parent="." instance=ExtResource( 8 )]
 position = Vector2( 1515.27, -734.091 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="."]
 
-[node name="GameUI" parent="CanvasLayer" instance=ExtResource( 10 )]
+[node name="GameUI" parent="UI" instance=ExtResource( 10 )]
 
-[node name="PauseScreen" parent="CanvasLayer" instance=ExtResource( 7 )]
+[node name="PauseScreen" parent="UI" instance=ExtResource( 7 )]
 visible = false
 
-[node name="Crop" parent="." instance=ExtResource( 12 )]
-position = Vector2( 301.909, 11.2373 )
-
-[connection signal="update_control_state" from="CanvasLayer/GameUI" to="." method="_on_GameUI_update_control_state"]
+[connection signal="update_control_state" from="UI/GameUI" to="." method="_on_GameUI_update_control_state"]
 
 [editable path="EnemySpawner"]

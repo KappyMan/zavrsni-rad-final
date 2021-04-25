@@ -16,7 +16,7 @@ enum ControlState {
 
 onready var friendly = $Friendly
 onready var camera = $Camera2D
-onready var pause_screen = $CanvasLayer/PauseScreen
+onready var pause_screen = $UI/PauseScreen
 
 onready var floor_tile = $Navigation/Floor
 onready var select_tile =$Navigation/SelectArea
