@@ -29,6 +29,7 @@ var selected = false
 var walk_state = false
 
 var can_plant = true
+var last_location = []
 
 func _ready():
 	var mat = texture.get_material().duplicate(true)
@@ -41,10 +42,10 @@ func _process(_delta):
 	
 
 func taskMachine(task):
-	#print(CurrentTask.keys()[task])
 	match task:
 		CurrentTask.wait:
 			move_along_path()
+			_clear_farm_parameter()
 			#print("WAIT")
 			pass
 		CurrentTask.walk:
@@ -64,22 +65,30 @@ func taskMachine(task):
 			#print("CONTINUE")
 			pass
 
+func _clear_farm_parameter():
+	var timer = Timer.new()
+	timer.connect("timeout",self,"_on_timer_timeout") 
+	add_child(timer) 
+	timer.wait_time = 60
+	timer.start() 
+
 func farm_land(tilemap,select_tile,tile_id):
 	var location = tilemap.world_to_map(global_position)
 	if select_tile.get_cellv(location) != TileMap.INVALID_CELL and tilemap.get_cellv(location) != tile_id:
 		tilemap.set_cellv(location,tile_id)
 		tilemap.update_bitmask_region(location-Vector2(1,1),location+Vector2(1,1))
-		return
-	if tilemap.get_cellv(location) == tile_id:
+	if tilemap.get_cellv(location) == tile_id and last_location.find(location) == -1:
+		can_plant = true
 		create_crop()
-	
+	last_location.append(location)
+
 
 func create_crop():
-	if can_plant and pool_has(path, Global.floor_tile.world_to_map(global_position)):
+	if can_plant:
 		var crop = Crop.instance()
 		crop._set_tile_coords(Global.floor_tile.world_to_map(global_position))
 		Global.crops.add_child(crop)
-		print(Global.floor_tile.world_to_map(global_position))
+		can_plant = false
 
 func pool_has(pool, value):
 	for v in pool:
@@ -136,9 +145,5 @@ func _on_Area2D_input_event(_viewport, event, _shape_idx):
 		texture.get_material().set_shader_param("width",selected)
 		emit_signal("selected_unit", self)
 
-
-func _on_Area2D_area_entered(_area):
-	can_plant = false
-
-func _on_Area2D_area_exited(_area):
-	can_plant = true
+func _on_timer_timeout():
+	last_location.clear()

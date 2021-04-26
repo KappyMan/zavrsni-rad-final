@@ -2,9 +2,9 @@ extends Area2D
 
 export(Vector2) var TILEMAP_TILE = Vector2(0,0) setget _set_tile_coords
 
-signal colleted_resource(resource)
+signal collected_resource(resource)
 
-const GROW_RANGES = [2,1]
+const GROW_RANGES = [60,20]
 
 onready var particles = $Texture/Particles2D
 onready var timer = $Timer
@@ -39,7 +39,6 @@ func growCrop():
 	makeHarvestable()
 	particles.emitting = true
 
-
 func createIcon(frame_texture):
 	var new_texture = ImageTexture.new()
 	var img:Image = frame_texture.get_data()
@@ -51,7 +50,7 @@ func makeHarvestable():
 # warning-ignore:return_value_discarded
 	connect("body_entered",self,"_on_Crop_pickup")
 # warning-ignore:return_value_discarded
-	connect("colleted_resource",Global.game_ui,"addInventory")
+	connect("collected_resource",Global.game_ui,"addInventory")
 
 func _set_tile_coords(value:Vector2):
 	TILEMAP_TILE = value
@@ -64,6 +63,6 @@ func _on_Timer_timeout():
 	growCrop()
 
 func _on_Crop_pickup(_farmer):
-	emit_signal("colleted_resource",texture_node.texture.resource_path)
+	emit_signal("collected_resource",texture_node.texture.resource_path)
 	queue_free()
 

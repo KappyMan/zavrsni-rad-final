@@ -55,13 +55,13 @@ func determineMode(texture:String):
 	emit_signal("update_control_state", texture)
 
 func displayInventory(cell_slots, count_array, items):
-	if len(count_array) > 6:
-		return
-	for cell in len(count_array):
+	for cell in len(cell_slots):
+		if cell >= items.size():
+			break
 		var cell_texture = cell_slots[cell].get_child(0)
 		if cell_texture.texture == null:
 			cell_texture.texture = createIcon(items[cell])
-			current_inventory.append(items[cell])
+			#current_inventory.append(items[cell])
 		cell_slots[cell].get_child(1).text = str(count_array[cell])
 
 func createIcon(path):
@@ -75,10 +75,15 @@ func createIcon(path):
 
 func addInventory(resource):
 	var seach_index = item_reference.find(resource)
-	if seach_index == -1:
+	if seach_index != -1:
+		item_count[seach_index]+=1
+		displayInventory(cell_array, item_count, item_reference)
+		return
+	if item_reference.size() < 9:
 		item_reference.append(resource)
 		item_count.append(1)
 		displayInventory(cell_array, item_count, item_reference)
 		return
-	item_count[seach_index] += 1
-	displayInventory(cell_array, item_count, item_reference)
+
+
+

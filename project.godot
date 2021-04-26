@@ -137,6 +137,7 @@ action_4={
 2d_physics/layer_1="world"
 2d_physics/layer_2="passive creatures"
 2d_physics/layer_3="agresive creatures"
+2d_physics/layer_4="crops"
 
 [rendering]
 
