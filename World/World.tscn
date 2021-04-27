@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://World/WorldTleset/Floor.tres" type="TileSet" id=1]
 [ext_resource path="res://Camera/Camera2D.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://UI/GameUI/Scenes/GameUI.tscn" type="PackedScene" id=10]
 [ext_resource path="res://World/NPC/NPCs/PassiveCreature.tscn" type="PackedScene" id=11]
 [ext_resource path="res://World/Crops/CropScenes/Crop.tscn" type="PackedScene" id=12]
+[ext_resource path="res://UI/GameUI/Scenes/Battle.tscn" type="PackedScene" id=13]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 5 )
@@ -147,6 +148,9 @@ position = Vector2( 1515.27, -734.091 )
 [node name="GameUI" parent="UI" instance=ExtResource( 10 )]
 
 [node name="PauseScreen" parent="UI" instance=ExtResource( 7 )]
+visible = false
+
+[node name="Battle" parent="UI" instance=ExtResource( 13 )]
 visible = false
 
 [connection signal="update_control_state" from="UI/GameUI" to="." method="_on_GameUI_update_control_state"]

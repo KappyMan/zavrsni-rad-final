@@ -4,6 +4,7 @@ onready var root =  get_tree().get_current_scene()
 onready var floor_tile = root.get_child(0).get_child(0)
 onready var game_ui = root.get_node("UI/GameUI")
 onready var crops = root.get_node("Crops")
+onready var battle = root.get_node("UI/Battle")
 
 var screen_metrics_dict = {}
 var Global_game_state = GameState.PLAY
@@ -32,6 +33,10 @@ func list_files_in_directory(path):
 	dir.list_dir_end()
 	return files
 
+func initCombatScene():
+	get_tree().paused = true
+	battle.visible = true
+	battle.battle_start = true
 
 func screen_metrics():
 	screen_metrics_dict["Display"] = OS.get_screen_size()

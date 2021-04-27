@@ -5,9 +5,9 @@
 [ext_resource path="res://UI/GameUI/Graphics/button_7.png" type="Texture" id=3]
 
 [node name="MenuButton" type="TextureButton"]
-margin_right = 286.0
-margin_bottom = 64.0
-rect_min_size = Vector2( 128, 64 )
+margin_right = 128.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 128, 32 )
 texture_normal = ExtResource( 2 )
 texture_pressed = ExtResource( 3 )
 expand = true

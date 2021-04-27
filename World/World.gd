@@ -38,7 +38,7 @@ func _process(_delta):
 func _unhandled_input(event):
 	if event is InputEventKey:
 		if event.pressed and event.scancode == KEY_ESCAPE:
-			pause_screen.visible=!pause_screen.visible
+			pause_screen.invertVisibility()
 			Global.Global_game_state = Global.GameState.STOP
 
 func controlStateMachine(state):

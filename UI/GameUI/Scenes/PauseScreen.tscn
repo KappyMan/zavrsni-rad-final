@@ -8,6 +8,7 @@
 [ext_resource path="res://UI/GameUI/Scenes/PauseScreen.gd" type="Script" id=6]
 
 [node name="PauseScreen" type="Control"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 6 )
@@ -17,26 +18,31 @@ __meta__ = {
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
+anchor_bottom = 0.5
 margin_left = -256.0
+margin_top = -256.0
 margin_right = 256.0
-margin_bottom = 512.0
+margin_bottom = 256.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TextureRect" type="TextureRect" parent="CenterContainer"]
-margin_right = 512.0
-margin_bottom = 512.0
-rect_min_size = Vector2( 512, 512 )
+margin_left = 128.0
+margin_top = 128.0
+margin_right = 384.0
+margin_bottom = 384.0
+rect_min_size = Vector2( 256, 256 )
 texture = ExtResource( 1 )
 expand = true
 
 [node name="CloseButton" type="TextureButton" parent="CenterContainer/TextureRect"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -128.0
-margin_bottom = 128.0
+margin_left = -64.0
+margin_bottom = 64.0
 texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 5 )
 expand = true
@@ -45,56 +51,59 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 113.0
-margin_top = 64.0
-margin_right = 399.0
-margin_bottom = 448.0
+margin_left = 192.0
+margin_top = 164.0
+margin_right = 320.0
+margin_bottom = 347.0
+rect_min_size = Vector2( 128, 0 )
 
 [node name="GamePaused" type="Label" parent="CenterContainer/VBoxContainer"]
-margin_right = 286.0
-margin_bottom = 42.0
+margin_right = 128.0
+margin_bottom = 21.0
 custom_fonts/font = ExtResource( 3 )
 text = "Game Paused"
 align = 1
 valign = 1
 
-[node name="VSplitContainer" type="VSplitContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 46.0
-margin_right = 286.0
-margin_bottom = 96.0
-rect_min_size = Vector2( 0, 50 )
+[node name="VSplitContainer2" type="VSplitContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 25.0
+margin_right = 128.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 0, 30 )
 
 [node name="ResumeButton" parent="CenterContainer/VBoxContainer" instance=ExtResource( 2 )]
-margin_top = 100.0
-margin_bottom = 164.0
+margin_top = 59.0
+margin_bottom = 91.0
 
 [node name="Label" parent="CenterContainer/VBoxContainer/ResumeButton" index="0"]
 text = "Resume"
 
 [node name="SettingsButton" parent="CenterContainer/VBoxContainer" instance=ExtResource( 2 )]
-margin_top = 168.0
-margin_bottom = 232.0
+margin_top = 95.0
+margin_bottom = 127.0
 
 [node name="Label" parent="CenterContainer/VBoxContainer/SettingsButton" index="0"]
 text = "Settings"
 
 [node name="ExitButton" parent="CenterContainer/VBoxContainer" instance=ExtResource( 2 )]
-margin_top = 236.0
-margin_bottom = 300.0
+margin_top = 131.0
+margin_bottom = 163.0
 
 [node name="Label" parent="CenterContainer/VBoxContainer/ExitButton" index="0"]
+margin_top = -20.2063
+margin_bottom = 21.7937
 text = "Exit"
 
-[node name="VSplitContainer2" type="VSplitContainer" parent="CenterContainer/VBoxContainer"]
-margin_top = 304.0
-margin_right = 286.0
-margin_bottom = 384.0
-rect_min_size = Vector2( 0, 80 )
+[node name="VSplitContainer" type="VSplitContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 167.0
+margin_right = 128.0
+margin_bottom = 183.0
+rect_min_size = Vector2( 32, 16 )
+
 [connection signal="pressed" from="CenterContainer/TextureRect/CloseButton" to="." method="_on_CloseButton_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/ResumeButton" to="." method="_on_ResumeButton_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ExitButton" to="." method="_on_ExitButton_pressed"]
 
 [editable path="CenterContainer/VBoxContainer/ResumeButton"]
-
 [editable path="CenterContainer/VBoxContainer/SettingsButton"]
-
 [editable path="CenterContainer/VBoxContainer/ExitButton"]
