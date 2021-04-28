@@ -1,0 +1,95 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://World/NPC/BattleAssets/GrassTileset.tres" type="TileSet" id=1]
+[ext_resource path="res://World/NPC/BattleAssets/Decor.tres" type="TileSet" id=2]
+[ext_resource path="res://World/NPC/BattleAssets/Dummy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://World/NPC/BattleAssets/MonsterBattle.gd" type="Script" id=4]
+[ext_resource path="res://UI/Menu/Scenes/ActionButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://UI/GameUI/Graphics/CellIcons/tile_attack_selected.png" type="Texture" id=6]
+[ext_resource path="res://UI/GameUI/Graphics/CellIcons/tile_attack.png" type="Texture" id=7]
+[ext_resource path="res://UI/GameUI/Graphics/CellIcons/icon_11.png" type="Texture" id=8]
+[ext_resource path="res://UI/GameUI/Graphics/CellIcons/icon_10.png" type="Texture" id=9]
+
+[node name="MonsterBattle" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Grass" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( -262152, 0, 0, -262151, 0, 0, -262150, 0, 0, -262149, 0, 0, -262148, 0, 0, -262147, 0, 0, -262146, 0, 0, -262145, 0, 0, -327680, 0, 0, -327679, 0, 0, -327678, 0, 0, -327677, 0, 0, -327676, 0, 0, -327675, 0, 0, -327674, 0, 0, -327673, 0, 0, -196616, 0, 0, -196615, 0, 65537, -196614, 0, 1, -196613, 0, 65537, -196612, 0, 65537, -196611, 0, 1, -196610, 0, 65536, -196609, 0, 1, -262144, 0, 65537, -262143, 0, 1, -262142, 0, 65536, -262141, 0, 0, -262140, 0, 0, -262139, 0, 1, -262138, 0, 1, -262137, 0, 0, -131080, 0, 0, -131079, 0, 65537, -131078, 0, 0, -131077, 0, 65536, -131076, 0, 1, -131075, 0, 0, -131074, 0, 65537, -131073, 0, 0, -196608, 0, 1, -196607, 0, 1, -196606, 0, 65536, -196605, 0, 0, -196604, 0, 1, -196603, 0, 1, -196602, 0, 1, -196601, 0, 0, -65544, 0, 0, -65543, 0, 1, -65542, 0, 65536, -65541, 0, 0, -65540, 0, 65536, -65539, 0, 1, -65538, 0, 1, -65537, 0, 65537, -131072, 0, 0, -131071, 0, 0, -131070, 0, 0, -131069, 0, 65536, -131068, 0, 65537, -131067, 0, 0, -131066, 0, 0, -131065, 0, 0, -8, 0, 0, -7, 0, 65536, -6, 0, 65537, -5, 0, 0, -4, 0, 0, -3, 0, 65536, -2, 0, 1, -1, 0, 0, -65536, 0, 1, -65535, 0, 1, -65534, 0, 65536, -65533, 0, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 0, 0, 65528, 0, 0, 65529, 0, 1, 65530, 0, 65536, 65531, 0, 65536, 65532, 0, 0, 65533, 0, 1, 65534, 0, 65536, 65535, 0, 1, 0, 0, 65537, 1, 0, 65537, 2, 0, 65536, 3, 0, 1, 4, 0, 0, 5, 0, 65537, 6, 0, 1, 7, 0, 0, 131064, 0, 0, 131065, 0, 0, 131066, 0, 0, 131067, 0, 1, 131068, 0, 0, 131069, 0, 65536, 131070, 0, 0, 131071, 0, 1, 65536, 0, 0, 65537, 0, 1, 65538, 0, 1, 65539, 0, 1, 65540, 0, 65536, 65541, 0, 0, 65542, 0, 65537, 65543, 0, 0, 196600, 0, 0, 196601, 0, 0, 196602, 0, 1, 196603, 0, 1, 196604, 0, 65536, 196605, 0, 0, 196606, 0, 65537, 196607, 0, 0, 131072, 0, 0, 131073, 0, 1, 131074, 0, 0, 131075, 0, 65537, 131076, 0, 1, 131077, 0, 65536, 131078, 0, 65536, 131079, 0, 0, 262136, 0, 0, 262137, 0, 65537, 262138, 0, 0, 262139, 0, 0, 262140, 0, 1, 262141, 0, 0, 262142, 0, 1, 262143, 0, 1, 196608, 0, 65537, 196609, 0, 65537, 196610, 0, 65536, 196611, 0, 65536, 196612, 0, 1, 196613, 0, 65536, 196614, 0, 1, 196615, 0, 0, 327672, 0, 0, 327673, 0, 0, 327674, 0, 0, 327675, 0, 0, 327676, 0, 0, 327677, 0, 0, 327678, 0, 0, 327679, 0, 0, 262144, 0, 0, 262145, 0, 0, 262146, 0, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 0, 0 )
+
+[node name="Decor" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( -327688, 10, 0, -327687, 10, 1, -327684, 10, 0, -327683, 10, 1, -393215, 6, 0, -393214, 6, 1, -393212, 10, 0, -393211, 10, 1, -262152, 10, 65536, -262151, 10, 65537, -262150, 9, 0, -262149, 9, 1, -262148, 10, 65536, -262147, 10, 65537, -262146, 2, 0, -262145, 8, 0, -327680, 8, 1, -327679, 6, 65536, -327678, 6, 65537, -327677, 0, 0, -327676, 10, 65536, -327675, 10, 65537, -327674, 9, 0, -327673, 9, 1, -196616, 10, 131072, -196615, 10, 131073, -196614, 9, 65536, -196613, 9, 65537, -196612, 10, 131072, -196611, 10, 131073, -196609, 8, 65536, -262144, 8, 65537, -262140, 10, 131072, -262139, 10, 131073, -262138, 9, 65536, -262137, 9, 65537, -131078, 9, 131072, -131077, 9, 131073, -131076, 2, 0, -131075, 1, 0, -131073, 8, 131072, -196608, 8, 131073, -196607, 2, 0, -196603, 0, 0, -196602, 9, 131072, -196601, 9, 131073, -65544, 5, 0, -65543, 2, 0, -65542, 1, 0, -131069, 1, 0, -131066, 1, 0, -131065, 0, 0, -8, 5, 65536, -6, 9, 0, -5, 9, 1, -65530, 5, 0, 65530, 9, 65536, 65531, 9, 65537, 4, 2, 0, 6, 5, 65536, 7, 2, 0, 131063, 3, 0, 131064, 3, 65536, 131065, 3, 1, 131066, 9, 131072, 131067, 9, 131073, 65539, 1, 0, 65540, 0, 0, 65541, 1, 0, 65542, 3, 0, 65543, 3, 65536, 65544, 3, 1, 196600, 7, 0, 196601, 7, 1, 196602, 3, 0, 196603, 3, 65536, 196604, 3, 1, 196605, 0, 0, 131075, 4, 0, 131076, 4, 0, 131077, 4, 0, 131078, 4, 0, 131079, 4, 0, 262136, 6, 0, 262137, 6, 1, 262139, 7, 0, 262140, 7, 1, 262141, 3, 0, 262142, 3, 65537, 262143, 3, 65536, 196608, 3, 65537, 196609, 3, 65536, 196610, 3, 65536, 196611, 3, 1, 196613, 5, 0, 196614, 7, 0, 196615, 7, 1, 327672, 6, 65536, 327673, 6, 65537, 262149, 5, 65536 )
+
+[node name="PlayerUnit" parent="." instance=ExtResource( 3 )]
+
+[node name="Enemy" parent="." instance=ExtResource( 3 )]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -256.0
+margin_top = -150.0
+margin_right = 256.0
+margin_bottom = 150.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="Control"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -54.0
+margin_top = -76.0
+margin_right = 54.0
+columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ActionButton" parent="Control/GridContainer" instance=ExtResource( 5 )]
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 6 )
+
+[node name="Label" parent="Control/GridContainer/ActionButton" index="0"]
+margin_bottom = 14.0
+text = ""
+
+[node name="ActionButton2" parent="Control/GridContainer" instance=ExtResource( 5 )]
+margin_left = 36.0
+margin_right = 68.0
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 6 )
+
+[node name="Label" parent="Control/GridContainer/ActionButton2" index="0"]
+margin_bottom = 14.0
+text = ""
+
+[node name="ActionButton3" parent="Control/GridContainer" instance=ExtResource( 5 )]
+margin_left = 72.0
+margin_right = 104.0
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 6 )
+
+[node name="Label" parent="Control/GridContainer/ActionButton3" index="0"]
+margin_bottom = 14.0
+text = ""
+
+[node name="VSplitContainer" type="VSplitContainer" parent="Control/GridContainer"]
+margin_top = 36.0
+margin_right = 32.0
+margin_bottom = 76.0
+rect_min_size = Vector2( 0, 40 )
+
+[editable path="Control/GridContainer/ActionButton"]
+[editable path="Control/GridContainer/ActionButton2"]
+[editable path="Control/GridContainer/ActionButton3"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://UI/GameUI/Scenes/Battle.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://World/NPC/BattleAssets/MonsterBattle.tscn" type="PackedScene" id=2]
 
 [node name="Battle" type="Control"]
 pause_mode = 2
@@ -24,8 +24,4 @@ size = Vector2( 512, 300 )
 handle_input_locally = false
 render_target_update_mode = 3
 
-[node name="Node2D" type="Node2D" parent="ViewportContainer/Viewport"]
-
-[node name="icon" type="Sprite" parent="ViewportContainer/Viewport/Node2D"]
-position = Vector2( 100, 100 )
-texture = ExtResource( 2 )
+[node name="MonsterBattle" parent="ViewportContainer/Viewport" instance=ExtResource( 2 )]

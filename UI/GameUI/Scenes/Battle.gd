@@ -2,6 +2,7 @@ extends Control
 
 onready var viewport = $ViewportContainer/Viewport
 onready var container = $ViewportContainer
+onready var monster_battle = $ViewportContainer/Viewport/MonsterBattle
 
 var battle_start := false setget startBattle 
 
@@ -11,7 +12,10 @@ func _ready():
 	set_process(false)
 
 func _process(_delta):
-	print("Helloworld")
+	pass
+
+func setFighterAssets(player_texture, player_health, enemy_texture, enemy_health):
+	monster_battle.setDummies(player_health,player_texture,enemy_health,enemy_texture)
 
 func startBattle(_value):
 	set_process(true)

@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 onready var texture = $Texture
 onready var animation_player = $AnimationPlayer
-
+onready var stats = $CreatureStats
 
 var collision_detect = null
 var speed : = 1.5
@@ -56,11 +56,14 @@ func set_path(value : PoolVector2Array):
 func _on_Timer_timeout():
 	queue_free()
 
+func getTexture():
+	return texture.texture
+
 func initCombat(target_body):
 	if collision_detect == null or target_body == null:
 		return
 	if target_body == collision_detect.collider:
-		Global.initCombatScene()
+		Global.initCombatScene(target_body.getTexture(), target_body.getHealth(),getTexture(),$CreatureStats._get_health())
 
 
 func _on_Area2D_body_entered(body):

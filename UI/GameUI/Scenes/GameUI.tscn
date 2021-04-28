@@ -85,6 +85,7 @@ texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 4 )
 
 [node name="Label" parent="ActionGrid/ActionButton2" index="0"]
+margin_bottom = 14.0
 text = "W"
 
 [node name="ActionButton3" parent="ActionGrid" instance=ExtResource( 3 )]

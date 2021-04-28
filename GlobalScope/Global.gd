@@ -33,10 +33,11 @@ func list_files_in_directory(path):
 	dir.list_dir_end()
 	return files
 
-func initCombatScene():
+func initCombatScene(player_unit_texture, player_unit_stats, enemy_unit_texture, enemy_unit_stats):
 	get_tree().paused = true
 	battle.visible = true
 	battle.battle_start = true
+	battle.setFighterAssets(player_unit_texture, player_unit_stats, enemy_unit_texture, enemy_unit_stats)
 
 func screen_metrics():
 	screen_metrics_dict["Display"] = OS.get_screen_size()

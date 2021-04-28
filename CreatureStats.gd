@@ -6,7 +6,7 @@ signal killed()
 export(int) var max_health = 3
 
 onready var invulnerability_timer = $Timer
-onready var health = max_health setget _set_health
+onready var health = max_health setget _set_health, _get_health
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -27,3 +27,6 @@ func _set_health(value):
 		if health == 0:
 			kill()
 			emit_signal("killed")
+
+func _get_health():
+	return health

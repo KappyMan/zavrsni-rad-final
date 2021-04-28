@@ -136,6 +136,12 @@ func amISelected(selected_unit):
 func onNewTask(value):
 	curr_task = value
 
+func getTexture():
+	return texture.texture
+
+func getHealth():
+	return $CreatureStats._get_health()
+
 func set_farming_parameters(parameters):
 	farming_parameters += parameters
 
