@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon_11.png-7bf6acc357438e587f6c393c25bed890.stex"
+path="res://.import/tile_shield.png-e51e2ea119e5f88ed68d18de123d068b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/GameUI/Graphics/CellIcons/icon_11.png"
-dest_files=[ "res://.import/icon_11.png-7bf6acc357438e587f6c393c25bed890.stex" ]
+source_file="res://UI/GameUI/Graphics/CellIcons/tile_shield.png"
+dest_files=[ "res://.import/tile_shield.png-e51e2ea119e5f88ed68d18de123d068b.stex" ]
 
 [params]
 

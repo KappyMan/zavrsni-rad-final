@@ -1,12 +1,18 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://CreatureStats.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World/NPC/BattleAssets/Dummy.gd" type="Script" id=2]
 [ext_resource path="res://World/NPC/NPCAnimations/human_idle.tres" type="Animation" id=3]
 [ext_resource path="res://World/NPC/NPCAnimations/human_attack.tres" type="Animation" id=4]
 [ext_resource path="res://World/NPC/NPCAnimations/human_hurt.tres" type="Animation" id=5]
+[ext_resource path="res://UI/GameUI/Graphics/CellIcons/healthbar_empty.png" type="Texture" id=6]
+[ext_resource path="res://UI/GameUI/Graphics/CellIcons/healthbar_full.png" type="Texture" id=7]
+[ext_resource path="res://World/NPC/NPCTextures/bigCreatures/orc.png" type="Texture" id=8]
+[ext_resource path="res://UI/GameUI/Graphics/CellIcons/icon_05.png" type="Texture" id=9]
+[ext_resource path="res://UI/GameUI/Graphics/CellIcons/icon_04.png" type="Texture" id=10]
 
 [node name="Dummy" type="Sprite"]
+texture = ExtResource( 8 )
 script = ExtResource( 2 )
 
 [node name="CreatureStats" parent="." instance=ExtResource( 1 )]
@@ -15,3 +21,35 @@ script = ExtResource( 2 )
 anims/human_attack = ExtResource( 4 )
 anims/human_hurt = ExtResource( 5 )
 anims/human_idle = ExtResource( 3 )
+
+[node name="HealthBar" type="TextureProgress" parent="."]
+margin_left = -17.5
+margin_top = -40.0
+margin_right = 17.5
+margin_bottom = -33.0
+texture_under = ExtResource( 6 )
+texture_progress = ExtResource( 7 )
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton" type="TextureButton" parent="HealthBar"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 6.8501
+margin_top = -17.5107
+margin_right = 38.8501
+margin_bottom = 14.4893
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+toggle_mode = true
+texture_normal = ExtResource( 10 )
+texture_pressed = ExtResource( 9 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

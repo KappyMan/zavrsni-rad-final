@@ -16,6 +16,7 @@ func _process(_delta):
 
 func setFighterAssets(player_texture, player_health, enemy_texture, enemy_health):
 	monster_battle.setDummies(player_health,player_texture,enemy_health,enemy_texture)
+	rect_global_position = Vector2.ZERO
 
 func startBattle(_value):
 	set_process(true)

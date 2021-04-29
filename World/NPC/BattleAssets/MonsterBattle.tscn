@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://World/NPC/BattleAssets/GrassTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://World/NPC/BattleAssets/Decor.tres" type="TileSet" id=2]
@@ -7,11 +7,18 @@
 [ext_resource path="res://UI/Menu/Scenes/ActionButton.tscn" type="PackedScene" id=5]
 [ext_resource path="res://UI/GameUI/Graphics/CellIcons/tile_attack_selected.png" type="Texture" id=6]
 [ext_resource path="res://UI/GameUI/Graphics/CellIcons/tile_attack.png" type="Texture" id=7]
-[ext_resource path="res://UI/GameUI/Graphics/CellIcons/icon_11.png" type="Texture" id=8]
-[ext_resource path="res://UI/GameUI/Graphics/CellIcons/icon_10.png" type="Texture" id=9]
+[ext_resource path="res://UI/GameUI/Graphics/CellIcons/tile_amulet_selected.png" type="Texture" id=8]
+[ext_resource path="res://UI/GameUI/Graphics/CellIcons/tile_amulet.png" type="Texture" id=9]
+[ext_resource path="res://UI/GameUI/Graphics/CellIcons/tile_shield.png" type="Texture" id=10]
+[ext_resource path="res://UI/GameUI/Graphics/CellIcons/tile_shield_selected.png" type="Texture" id=11]
+[ext_resource path="res://UI/GameUI/Graphics/CellIcons/tile_shield_disabled.png" type="Texture" id=12]
+[ext_resource path="res://UI/GameUI/Graphics/CellIcons/tile_attack_disabled.png" type="Texture" id=13]
+[ext_resource path="res://UI/GameUI/Graphics/CellIcons/tile_amulet_disabled.png" type="Texture" id=14]
 
 [node name="MonsterBattle" type="Node2D"]
 script = ExtResource( 4 )
+
+[node name="Tween" type="Tween" parent="."]
 
 [node name="Grass" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
@@ -31,19 +38,19 @@ tile_data = PoolIntArray( -327688, 10, 0, -327687, 10, 1, -327684, 10, 0, -32768
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+zoom = Vector2( 0.9, 0.9 )
+smoothing_enabled = true
 
-[node name="Control" type="Control" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -256.0
-margin_top = -150.0
-margin_right = 256.0
-margin_bottom = 150.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GridContainer" type="GridContainer" parent="Control"]
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/UI"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -56,40 +63,45 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ActionButton" parent="Control/GridContainer" instance=ExtResource( 5 )]
+[node name="ActionButton" parent="CanvasLayer/UI/GridContainer" instance=ExtResource( 5 )]
+toggle_mode = false
 texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 6 )
+texture_disabled = ExtResource( 13 )
 
-[node name="Label" parent="Control/GridContainer/ActionButton" index="0"]
+[node name="Label" parent="CanvasLayer/UI/GridContainer/ActionButton" index="0"]
 margin_bottom = 14.0
 text = ""
 
-[node name="ActionButton2" parent="Control/GridContainer" instance=ExtResource( 5 )]
+[node name="ActionButton2" parent="CanvasLayer/UI/GridContainer" instance=ExtResource( 5 )]
 margin_left = 36.0
 margin_right = 68.0
-texture_normal = ExtResource( 8 )
-texture_pressed = ExtResource( 6 )
+toggle_mode = false
+texture_normal = ExtResource( 10 )
+texture_pressed = ExtResource( 11 )
+texture_disabled = ExtResource( 12 )
 
-[node name="Label" parent="Control/GridContainer/ActionButton2" index="0"]
+[node name="Label" parent="CanvasLayer/UI/GridContainer/ActionButton2" index="0"]
 margin_bottom = 14.0
 text = ""
 
-[node name="ActionButton3" parent="Control/GridContainer" instance=ExtResource( 5 )]
+[node name="ActionButton3" parent="CanvasLayer/UI/GridContainer" instance=ExtResource( 5 )]
 margin_left = 72.0
 margin_right = 104.0
+toggle_mode = false
 texture_normal = ExtResource( 9 )
-texture_pressed = ExtResource( 6 )
+texture_pressed = ExtResource( 8 )
+texture_disabled = ExtResource( 14 )
 
-[node name="Label" parent="Control/GridContainer/ActionButton3" index="0"]
+[node name="Label" parent="CanvasLayer/UI/GridContainer/ActionButton3" index="0"]
 margin_bottom = 14.0
 text = ""
 
-[node name="VSplitContainer" type="VSplitContainer" parent="Control/GridContainer"]
-margin_top = 36.0
-margin_right = 32.0
-margin_bottom = 76.0
-rect_min_size = Vector2( 0, 40 )
+[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
+[connection signal="pressed" from="CanvasLayer/UI/GridContainer/ActionButton" to="." method="_on_ActionButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/GridContainer/ActionButton2" to="." method="_on_ActionButton2_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/GridContainer/ActionButton3" to="." method="_on_ActionButton3_pressed"]
 
-[editable path="Control/GridContainer/ActionButton"]
-[editable path="Control/GridContainer/ActionButton2"]
-[editable path="Control/GridContainer/ActionButton3"]
+[editable path="CanvasLayer/UI/GridContainer/ActionButton"]
+[editable path="CanvasLayer/UI/GridContainer/ActionButton2"]
+[editable path="CanvasLayer/UI/GridContainer/ActionButton3"]
