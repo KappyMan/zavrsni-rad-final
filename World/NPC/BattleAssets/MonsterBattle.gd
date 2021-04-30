@@ -39,9 +39,9 @@ func wobbleCamera(mul):
 	return mul * (-1)
 
 func dummyPosition():
-	var dummy_positions = Vector2(40,0)
-	player_unit.global_position = -dummy_positions
-	enemy.global_position = dummy_positions
+	player_unit.global_position = -player_unit.global_position
+	enemy.global_position = enemy.global_position
+	enemy.flip_h = true
 
 func setDummies(player_hp,player_tex,enemy_hp,enemy_tex):
 	player_unit.setTexture(player_tex)
@@ -51,27 +51,51 @@ func setDummies(player_hp,player_tex,enemy_hp,enemy_tex):
 
 func doAction(action):
 	invertDisable()
+	print("Player turn")
 	match action:
 		battleAction.Attack:
-			attack(player_unit,-1)
+			attack(player_unit,enemy)
 		battleAction.Shield:
 			shield(player_unit)
 		battleAction.Heal:
-			pass
+			heal(player_unit)
 		battleAction.Nothing:
-			pass
-	yield(get_tree().create_timer(5.0), "timeout")
+			return
+	yield(get_tree().create_timer(4.0), "timeout")
+	print("Enemy turn")
+	enemyTurn(enemy)
+	yield(get_tree().create_timer(4.0), "timeout")
 	invertDisable()
+	action = battleAction.Nothing
 
-func attack(unit,dir:int):
-	unit.playAnimation("attack")
-	tween.interpolate_property(player_unit,"position",position,dir*Vector2(40,0),2,Tween.TRANS_QUART, Tween.EASE_OUT,1)
-	tween.start()
+
+func attack(unit, hurt_enemy):
+	if !unit.flip_h:
+		unit.playAnimation("attack")
+		yield(get_tree().create_timer(1.0), "timeout")
+		hurt_enemy.healthManipulate(-1)
+		return
+	unit.playAnimation("attack_mirror")
+	yield(get_tree().create_timer(1.0), "timeout")
+	hurt_enemy.healthManipulate(-1)
 
 func shield(unit):
-	unit.shieldUp()
+	unit.shieldUp(true)
+	unit.playAnimation("shield")
 
+func heal(unit):
+	unit.healthManipulate()
 
+func enemyTurn(enemy_unit):
+	randomize()
+	var rand_action = randi() % 3 + 1
+	match rand_action:
+		battleAction.Attack:
+			attack(enemy_unit, player_unit)
+		battleAction.Shield:
+			shield(enemy_unit)
+		battleAction.Heal:
+			heal(enemy_unit)
 
 func invertDisable():
 	for action_icon in $CanvasLayer/UI/GridContainer.get_children():
@@ -92,4 +116,3 @@ func _on_ActionButton3_pressed():
 func _set_action_selected(value):
 	action_selected = value
 	doAction(action_selected)
-	print(action_selected)

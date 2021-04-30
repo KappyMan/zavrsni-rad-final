@@ -35,6 +35,7 @@ tile_data = PoolIntArray( -327688, 10, 0, -327687, 10, 1, -327684, 10, 0, -32768
 [node name="PlayerUnit" parent="." instance=ExtResource( 3 )]
 
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
+flip_h = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
