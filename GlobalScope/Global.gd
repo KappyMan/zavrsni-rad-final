@@ -8,6 +8,8 @@ onready var battle = root.get_node("UI/Battle")
 
 var screen_metrics_dict = {}
 var Global_game_state = GameState.PLAY
+var combat_player = null
+var combat_enemy = null
 
 enum GameState{
 	PLAY,
@@ -33,11 +35,28 @@ func list_files_in_directory(path):
 	dir.list_dir_end()
 	return files
 
-func initCombatScene(player_unit_texture, player_unit_stats, enemy_unit_texture, enemy_unit_stats):
-	get_tree().paused = true
+func initCombatScene(player_unit_texture, player_unit_stats, enemy_unit_texture, enemy_unit_stats, player, enemy):
+	combat_player = player
+	combat_enemy = enemy
+	if combat_enemy != null and combat_player != null:
+		get_tree().paused = true
+		battle.visible = true
+		battle.battle_start = true
+		battle.setFighterAssets(player_unit_texture, player_unit_stats, enemy_unit_texture, enemy_unit_stats, player, enemy)
+
+func combat_finished(loser):
+	if loser == combat_player:
+		print("Winner: ENEMY")
+		combat_enemy.area.monitoring = true
+	else:
+		print("Winner: PLAYER")
+	combat_enemy = null
+	combat_player = null
+	battle.finalizeFight()
 	battle.visible = true
-	battle.battle_start = true
-	battle.setFighterAssets(player_unit_texture, player_unit_stats, enemy_unit_texture, enemy_unit_stats)
+	battle.battle_start = false
+	get_tree().paused = false
+	loser.queue_free()
 
 func screen_metrics():
 	screen_metrics_dict["Display"] = OS.get_screen_size()

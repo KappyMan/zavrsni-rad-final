@@ -18,6 +18,7 @@ export(String, "boy", "girl", "worker") var texture_type
 onready var texture = $Texture
 onready var animation_player = $AnimationPlayer
 onready var creator = CreatureCreator.instance()
+onready var stats = $CreatureStats
 
 var speed : = 1.5
 var path : = PoolVector2Array() setget set_path
@@ -30,6 +31,8 @@ var walk_state = false
 
 var can_plant = true
 var last_location = []
+
+var timer = null
 
 func _ready():
 	var mat = texture.get_material().duplicate(true)
@@ -66,11 +69,12 @@ func taskMachine(task):
 			pass
 
 func _clear_farm_parameter():
-	var timer = Timer.new()
-	timer.connect("timeout",self,"_on_timer_timeout") 
-	add_child(timer) 
-	timer.wait_time = 60
-	timer.start() 
+	if timer == null:
+		timer = Timer.new()
+		timer.connect("timeout",self,"_on_timer_timeout") 
+		add_child(timer) 
+		timer.wait_time = 60
+		timer.start() 
 
 func farm_land(tilemap,select_tile,tile_id):
 	var location = tilemap.world_to_map(global_position)
@@ -142,6 +146,15 @@ func getTexture():
 func getHealth():
 	return $CreatureStats._get_health()
 
+func set_health(value):
+	stats._set_health(value)
+
+func get_health():
+	return stats._get_health()
+
+func get_max_health():
+	return stats.max_health
+
 func set_farming_parameters(parameters):
 	farming_parameters += parameters
 
@@ -153,3 +166,4 @@ func _on_Area2D_input_event(_viewport, event, _shape_idx):
 
 func _on_timer_timeout():
 	last_location.clear()
+	timer = null

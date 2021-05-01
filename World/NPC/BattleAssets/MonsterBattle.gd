@@ -2,12 +2,14 @@ extends Node2D
 
 const CAMERA_OFFSET = 10
 
-onready var timer = $Timer
 onready var player_unit = $PlayerUnit
 onready var enemy = $Enemy
 onready var camera = $Camera2D
 onready var tween = $Tween
+onready var timer = $Timer
+
 var multiplier = -1
+var enemy_last_action = battleAction.Nothing
 
 enum battleAction{
 	Nothing,
@@ -43,15 +45,18 @@ func dummyPosition():
 	enemy.global_position = enemy.global_position
 	enemy.flip_h = true
 
-func setDummies(player_hp,player_tex,enemy_hp,enemy_tex):
+func setDummies(player_hp,player_tex,enemy_hp,enemy_tex, enmy, plyr):
+	player_unit.rival = enmy
 	player_unit.setTexture(player_tex)
 	player_unit.setHealth(player_hp)
+	player_unit.setMaxHealth(plyr.get_max_health())
+	enemy.rival = plyr
 	enemy.setTexture(enemy_tex)
 	enemy.setHealth(enemy_hp)
+	enemy.setMaxHealth(enmy.get_max_health())
 
 func doAction(action):
 	invertDisable()
-	print("Player turn")
 	match action:
 		battleAction.Attack:
 			attack(player_unit,enemy)
@@ -61,22 +66,22 @@ func doAction(action):
 			heal(player_unit)
 		battleAction.Nothing:
 			return
-	yield(get_tree().create_timer(4.0), "timeout")
-	print("Enemy turn")
+	yield(YieldProperly.yield_wait(3000, self), "completed")
+	player_unit.playAnimation("idle")
 	enemyTurn(enemy)
-	yield(get_tree().create_timer(4.0), "timeout")
+	yield(YieldProperly.yield_wait(3000, self), "completed")
+	enemy.playAnimation("idle")
 	invertDisable()
 	action = battleAction.Nothing
 
-
 func attack(unit, hurt_enemy):
-	if !unit.flip_h:
+	if !unit.Enemy:
 		unit.playAnimation("attack")
-		yield(get_tree().create_timer(1.0), "timeout")
+		yield(YieldProperly.yield_wait(1000, self), "completed")
 		hurt_enemy.healthManipulate(-1)
 		return
 	unit.playAnimation("attack_mirror")
-	yield(get_tree().create_timer(1.0), "timeout")
+	yield(YieldProperly.yield_wait(1000, self), "completed")
 	hurt_enemy.healthManipulate(-1)
 
 func shield(unit):
@@ -88,7 +93,10 @@ func heal(unit):
 
 func enemyTurn(enemy_unit):
 	randomize()
-	var rand_action = randi() % 3 + 1
+	var rand_action = randi() % 4 
+	if enemy_last_action == rand_action:
+		enemyTurn(enemy_unit)
+		return
 	match rand_action:
 		battleAction.Attack:
 			attack(enemy_unit, player_unit)
@@ -96,6 +104,9 @@ func enemyTurn(enemy_unit):
 			shield(enemy_unit)
 		battleAction.Heal:
 			heal(enemy_unit)
+		battleAction.Nothing:
+			enemyTurn(enemy_unit)
+	enemy_last_action = rand_action
 
 func invertDisable():
 	for action_icon in $CanvasLayer/UI/GridContainer.get_children():

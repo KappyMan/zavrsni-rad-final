@@ -21,6 +21,7 @@ config/icon="res://World/NPC/NPCTextures/SmallCreatures/Passive/Alive/duck.png"
 [autoload]
 
 Global="*res://GlobalScope/Global.gd"
+YieldProperly="*res://GlobalScope/YieldProperly.gd"
 
 [display]
 

@@ -59,6 +59,11 @@ func controlStateMachine(state):
 		ControlState.click:
 			setupForState(state)
 
+func gameOverScreen():
+	if friendly.get_child_count() == 0:
+		get_tree().reload_current_scene()
+
+
 func getAllFriendlies(parent):
 	var connect_children = parent.get_children()
 	for i in connect_children.size():
@@ -93,7 +98,8 @@ func spawnFriendly():
 
 func walkController():
 	if Input.is_action_pressed("right_click") and small_creature != null:
-		createPathPolygon(small_creature.global_position,get_global_mouse_position())
+		if is_instance_valid(small_creature):
+			createPathPolygon(small_creature.global_position,get_global_mouse_position())
 
 func selectArea():
 	if Input.is_action_just_pressed("left_click"):
