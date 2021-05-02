@@ -54,6 +54,9 @@ func setDummies(player_hp,player_tex,enemy_hp,enemy_tex, enmy, plyr):
 	enemy.setTexture(enemy_tex)
 	enemy.setHealth(enemy_hp)
 	enemy.setMaxHealth(enmy.get_max_health())
+	tween.interpolate_property($Duel,"volume_db",-20,-5,3,Tween.TRANS_LINEAR,Tween.EASE_IN)
+	tween.start()
+	$Duel.play()
 
 func doAction(action):
 	invertDisable()

@@ -16,13 +16,15 @@ func _ready():
 	playAnimation("idle")
 
 func shieldUp(state):
+	$Audio/Shield.play()
 	stats._set_shield(state)
 
 func healthManipulate(heal_or_hurt:int = 1):
 	randomize()
 	if heal_or_hurt > 0:
+		$Audio/Heal.play()
 		$Particles2D.emitting = heal_or_hurt
-	var heal_amount = heal_or_hurt*(randi()%3 + 1)
+	var heal_amount = heal_or_hurt*(randi()%5 + 1)
 	stats.healthChange(heal_amount)
 
 func healthbarUpdate(hp):

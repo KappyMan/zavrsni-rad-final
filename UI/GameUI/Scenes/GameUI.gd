@@ -2,6 +2,8 @@ extends Control
 
 onready var cell_grid = $CellGrid
 onready var action_grid = $ActionGrid
+onready var merchant = $Merchant
+onready var networth = $NetWorth/GridContainer/Label
 
 signal update_control_state(new_state)
 
@@ -11,13 +13,18 @@ var item_count = []
 var item_reference = []
 var current_inventory = []
 
+var is_trading = false
 var current_button = null setget set_current_button
 
 func _ready():
+	merchant.visible = false
 	getAllCells(cell_grid,cell_array)
 	getAllCells(action_grid,action_array)
 	setupCells(cell_array)
 	setupCells(action_array)
+
+func _process(_delta):
+	initTrading(is_trading)
 
 func getAllCells(grid:GridContainer, array:Array):
 	for cell in grid.get_children():
@@ -72,6 +79,17 @@ func createIcon(path):
 	var new_texture = ImageTexture.new()
 	new_texture.create_from_image(img,0)
 	return new_texture
+
+func initTrading(trading_cond):
+	if !trading_cond and item_reference.size() > 0:
+		merchant.merchantOfferCreation(item_reference, item_count)
+		merchant.timer.wait_time=rand_range(60, 600)
+		merchant.timer.start()
+		is_trading = true
+		printt("\n","The", "Merchant", "has", "been", "awoken..")
+
+func newNetWorth(value):
+	networth.text = str(value)
 
 func addInventory(resource):
 	var seach_index = item_reference.find(resource)

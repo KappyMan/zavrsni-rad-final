@@ -4,7 +4,7 @@ signal health_updated(health)
 signal shield_updated(shield)
 signal killed(loser, winner)
 
-export(int) var max_health = 3
+export(int) var max_health = 10 
  
 onready var invulnerability_timer = $Timer
 onready var health = max_health setget _set_health, _get_health
@@ -12,7 +12,7 @@ onready var health = max_health setget _set_health, _get_health
 var shield:bool = false setget _set_shield, _get_shield
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_set_health(health)
+	_set_health(max_health)
 	if get_parent() is Sprite:
 	# warning-ignore:return_value_discarded
 		connect("health_updated",get_parent(),"healthbarUpdate")

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/025_A_New_Town.mp3-4c903238ed0bd41b9b0afd3bb73e3b58.mp3str"
+
+[deps]
+
+source_file="res://Music&Sounds/Music/WorldMusic/025_A_New_Town.mp3"
+dest_files=[ "res://.import/025_A_New_Town.mp3-4c903238ed0bd41b9b0afd3bb73e3b58.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

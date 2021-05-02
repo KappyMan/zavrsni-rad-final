@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://World/WorldTleset/Floor.tres" type="TileSet" id=1]
 [ext_resource path="res://Camera/Camera2D.tscn" type="PackedScene" id=2]
@@ -13,7 +13,8 @@
 [ext_resource path="res://World/NPC/NPCs/PassiveCreature.tscn" type="PackedScene" id=11]
 [ext_resource path="res://World/Crops/CropScenes/Crop.tscn" type="PackedScene" id=12]
 [ext_resource path="res://UI/GameUI/Scenes/Battle.tscn" type="PackedScene" id=13]
-[ext_resource path="res://UI/GameUI/Scenes/Merchant.tscn" type="PackedScene" id=14]
+[ext_resource path="res://UI/GameUI/Scenes/GameOver.tscn" type="PackedScene" id=14]
+[ext_resource path="res://World/Music.gd" type="Script" id=15]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 5 )
@@ -48,6 +49,7 @@ format = 1
 
 [node name="Crop" parent="Crops" instance=ExtResource( 12 )]
 TILEMAP_TILE = Vector2( -24, 4 )
+GROW_TIME_SPEED = 100
 
 [node name="Crop2" parent="Crops" instance=ExtResource( 12 )]
 TILEMAP_TILE = Vector2( -21, 1 )
@@ -157,11 +159,13 @@ margin_bottom = 300.0
 [node name="PauseScreen" parent="UI" instance=ExtResource( 7 )]
 visible = false
 
-[node name="Merchant" parent="UI" instance=ExtResource( 14 )]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+[node name="GameOver" parent="UI" instance=ExtResource( 14 )]
+pause_mode = 2
+visible = false
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+volume_db = -10.0
+script = ExtResource( 15 )
 
 [connection signal="update_control_state" from="UI/GameUI" to="." method="_on_GameUI_update_control_state"]
 

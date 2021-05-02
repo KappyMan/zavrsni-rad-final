@@ -13,8 +13,8 @@ func _ready():
 	viewport.size = container.rect_size 
 	set_process(false)
 
-func _process(_delta):
-	pass
+
+
 
 func setFighterAssets(player_texture, player_health, enemy_texture, enemy_health, player, enemy):
 	print("SetFight")
@@ -22,6 +22,7 @@ func setFighterAssets(player_texture, player_health, enemy_texture, enemy_health
 	viewport.add_child(monster_battle)
 	monster_battle.setDummies(player_health,player_texture,enemy_health,enemy_texture, player, enemy)
 	rect_global_position = Vector2.ZERO
+
 
 func finalizeFight():
 	print("EndFight")

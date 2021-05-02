@@ -30,9 +30,13 @@ var small_creature = null
 var path_given = false
 
 func _ready():
+# warning-ignore:return_value_discarded
+	yield(get_tree().root, "ready")
+	connect("tree_entered",Global, "reload_world_gloabally")
 	all_friendlies += getAllFriendlies(friendly)
 
 func _process(_delta):
+	gameOverScreen()
 	controlStateMachine(control_state)
 
 func _unhandled_input(event):
@@ -60,8 +64,12 @@ func controlStateMachine(state):
 			setupForState(state)
 
 func gameOverScreen():
+	if Input.is_action_pressed("ui_accept"):
+		for n in friendly.get_children():
+			n.queue_free()
 	if friendly.get_child_count() == 0:
-		get_tree().reload_current_scene()
+		get_tree().paused = true
+		$UI/GameOver.initGameOver()
 
 
 func getAllFriendlies(parent):

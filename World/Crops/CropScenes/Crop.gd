@@ -1,6 +1,7 @@
 extends Area2D
 
 export(Vector2) var TILEMAP_TILE = Vector2(0,0) setget _set_tile_coords
+export(int) var GROW_TIME_SPEED = 1
 
 signal collected_resource(resource)
 
@@ -10,6 +11,8 @@ onready var particles = $Texture/Particles2D
 onready var timer = $Timer
 onready var texture_node = $Texture
 onready var frames = texture_node.hframes 
+
+
 
 func _ready():
 	randomize()
@@ -21,6 +24,7 @@ func _ready():
 	timer.start()
 	growCrop()
 
+
 func setCropTexture(id:int = 0):
 	var current_id = str(id)
 	if current_id.length() == 1:
@@ -28,7 +32,7 @@ func setCropTexture(id:int = 0):
 	return load("res://World/Crops/CropTextures/crop_" + str(current_id) + ".png")
 
 func randomGrowTime():
-	return (randi() % GROW_RANGES[0] + GROW_RANGES[1])
+	return (randi() % GROW_RANGES[0] + GROW_RANGES[1])/GROW_TIME_SPEED + 1
 
 func growCrop():
 	if frames:

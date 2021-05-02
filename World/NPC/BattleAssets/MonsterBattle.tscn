@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://World/NPC/BattleAssets/GrassTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://World/NPC/BattleAssets/Decor.tres" type="TileSet" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://UI/GameUI/Graphics/CellIcons/tile_shield_disabled.png" type="Texture" id=12]
 [ext_resource path="res://UI/GameUI/Graphics/CellIcons/tile_attack_disabled.png" type="Texture" id=13]
 [ext_resource path="res://UI/GameUI/Graphics/CellIcons/tile_amulet_disabled.png" type="Texture" id=14]
+[ext_resource path="res://Music&Sounds/Music/Duel.ogg" type="AudioStream" id=15]
 
 [node name="MonsterBattle" type="Node2D"]
 script = ExtResource( 4 )
@@ -99,6 +100,10 @@ texture_disabled = ExtResource( 14 )
 [node name="Label" parent="CanvasLayer/UI/GridContainer/ActionButton3" index="0"]
 margin_bottom = 14.0
 text = ""
+
+[node name="Duel" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+mix_target = 1
 
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
 [connection signal="pressed" from="CanvasLayer/UI/GridContainer/ActionButton" to="." method="_on_ActionButton_pressed"]

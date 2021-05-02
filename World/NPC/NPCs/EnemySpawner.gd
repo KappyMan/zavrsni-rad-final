@@ -1,6 +1,6 @@
 extends Node2D
 
-export(int) var SPAWNER_TIME = 40
+export(int) var SPAWNER_TIME = 1000
 
 const ENEMY_NAMES = ["zombie","spider", "sorcerer"]
 const createCreature = preload("res://World/NPC/NPCs/SmallCreatureCreator.tscn")
@@ -23,7 +23,7 @@ func _ready():
 	add_child(_timer)
 	_timer.connect("timeout", self, "_on_Timer_timeout")
 	randomize()
-	_timer.set_wait_time(rand_range(SPAWNER_TIME*0.5,SPAWNER_TIME))
+	_timer.set_wait_time(rand_range(SPAWNER_TIME*0.09,SPAWNER_TIME))
 	_timer.set_one_shot(false) # Make sure it loops
 	_timer.start()
 

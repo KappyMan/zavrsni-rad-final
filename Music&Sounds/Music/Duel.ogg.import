@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Duel.ogg-4ef6929dc89191aee083998e6beda404.oggstr"
+
+[deps]
+
+source_file="res://Music&Sounds/Music/Duel.ogg"
+dest_files=[ "res://.import/Duel.ogg-4ef6929dc89191aee083998e6beda404.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
