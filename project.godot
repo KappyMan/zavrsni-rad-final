@@ -14,9 +14,10 @@ _global_script_class_icons={
 
 [application]
 
-config/name="DucksFarming"
+config/name="DucksDemads"
 run/main_scene="res://World/World.tscn"
 config/icon="res://World/NPC/NPCTextures/SmallCreatures/Passive/Alive/duck.png"
+config/windows_native_icon="res://duck.ico"
 
 [autoload]
 

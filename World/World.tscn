@@ -49,7 +49,7 @@ format = 1
 
 [node name="Crop" parent="Crops" instance=ExtResource( 12 )]
 TILEMAP_TILE = Vector2( -24, 4 )
-GROW_TIME_SPEED = 100
+GROW_TIME_SPEED = 10
 
 [node name="Crop2" parent="Crops" instance=ExtResource( 12 )]
 TILEMAP_TILE = Vector2( -21, 1 )
@@ -92,6 +92,7 @@ limit_bottom = 1000
 limit_smoothed = true
 
 [node name="Line2D" type="Line2D" parent="."]
+visible = false
 
 [node name="Greenery" type="YSort" parent="."]
 __meta__ = {

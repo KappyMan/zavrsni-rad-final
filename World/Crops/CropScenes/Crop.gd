@@ -5,7 +5,7 @@ export(int) var GROW_TIME_SPEED = 1
 
 signal collected_resource(resource)
 
-const GROW_RANGES = [60,20]
+const GROW_RANGES = [20,15]
 
 onready var particles = $Texture/Particles2D
 onready var timer = $Timer

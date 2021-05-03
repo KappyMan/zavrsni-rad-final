@@ -1,6 +1,6 @@
 extends Node2D
 
-export(int) var SPAWNER_TIME = 1000
+export(int) var SPAWNER_TIME = 60
 
 const ENEMY_NAMES = ["zombie","spider", "sorcerer"]
 const createCreature = preload("res://World/NPC/NPCs/SmallCreatureCreator.tscn")
@@ -23,7 +23,8 @@ func _ready():
 	add_child(_timer)
 	_timer.connect("timeout", self, "_on_Timer_timeout")
 	randomize()
-	_timer.set_wait_time(rand_range(SPAWNER_TIME*0.09,SPAWNER_TIME))
+	_timer.set_wait_time(randi() % (SPAWNER_TIME*3) + SPAWNER_TIME)
+	print(_timer.wait_time)
 	_timer.set_one_shot(false) # Make sure it loops
 	_timer.start()
 
@@ -34,7 +35,8 @@ func _on_Timer_timeout():
 	if allow_spawn:
 		enemy_count.append(spawnCreature(path))
 		randomize()
-		_timer.set_wait_time(rand_range(1,20))
+		_timer.set_wait_time(randi() % (SPAWNER_TIME*3) + SPAWNER_TIME)
+	print(_timer.wait_time)
 
 func spawnCreature(new_path):
 	if enemy_count.size() >= ENEMY_CAP:

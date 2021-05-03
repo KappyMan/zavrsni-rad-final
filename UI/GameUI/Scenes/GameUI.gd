@@ -83,10 +83,9 @@ func createIcon(path):
 func initTrading(trading_cond):
 	if !trading_cond and item_reference.size() > 0:
 		merchant.merchantOfferCreation(item_reference, item_count)
-		merchant.timer.wait_time=rand_range(60, 600)
+		merchant.timer.wait_time=rand_range(80, 600)
 		merchant.timer.start()
 		is_trading = true
-		printt("\n","The", "Merchant", "has", "been", "awoken..")
 
 func newNetWorth(value):
 	networth.text = str(value)
